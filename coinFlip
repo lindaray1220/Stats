@@ -1,0 +1,12 @@
+import numpy as np
+class obj():
+  def coinFlip(prob, n):
+    fullResults = np.arange(n)
+    for i in range(0, n):
+      fullResults[i] = np.random.binomial(1, prob)
+    head_n = np.count_nonzero(fullResults == 1)
+    print('probability: '+str(prob))
+    print('iteration: ' + str(n))
+    print('Head count: ' + str(head_n))
+
+obj.coinFlip(0.5, 10)
