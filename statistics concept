@@ -1,0 +1,63 @@
+Parametric and Non-Parametric Models
+In statistics and machine learning, models can be broadly classified into two categories: parametric and non-parametric.
+Parametric Models
+Parametric models are a type of model that assumes a specific distribution for the data. These models have a fixed number of parameters that are estimated from the data, and they use these parameters to make predictions.
+Examples of parametric models include:
+Linear Regression
+Logistic Regression
+Gaussian Mixture Models (GMMs)
+Hidden Markov Models (HMMs)
+The advantages of parametric models are:
+Interpretability: Parametric models provide interpretable results, as the parameters have a clear meaning.
+Efficient computation: Parametric models are often computationally efficient, as they rely on closed-form expressions.
+Flexibility: Parametric models can be easily extended to handle complex data structures.
+However, parametric models also have some disadvantages:
+Assumptions: Parametric models assume a specific distribution for the data, which may not always hold true.
+Overfitting: Parametric models can suffer from overfitting, especially when the number of parameters is large.
+Non-Parametric Models
+Non-parametric models, on the other hand, do not assume a specific distribution for the data. Instead, they use flexible functions or algorithms to model the data.
+Examples of non-parametric models include:
+Decision Trees
+Random Forests
+Support Vector Machines (SVMs)
+Neural Networks
+The advantages of non-parametric models are:
+Flexibility: Non-parametric models can handle complex data structures and relationships.
+Robustness: Non-parametric models are robust to outliers and noisy data.
+No assumptions: Non-parametric models do not assume a specific distribution for the data.
+However, non-parametric models also have some disadvantages:
+Computational complexity: Non-parametric models can be computationally expensive, especially for large datasets.
+Lack of interpretability: Non-parametric models can be difficult to interpret, as the relationships between variables are not explicitly defined.
+Risk of overfitting: Non-parametric models can suffer from overfitting, especially when the number of features is large.
+Choosing between Parametric and Non-Parametric Models
+When choosing between parametric and non-parametric models, consider the following factors:
+Data structure: If the data has a simple structure, a parametric model may be sufficient. However, if the data has a complex structure, a non-parametric model may be more suitable.
+Distributional assumptions: If the data follows a known distribution, a parametric model may be more suitable. However, if the data does not follow a known distribution, a non-parametric model may be more suitable.
+Interpretability: If interpretability is important, a parametric model may be more suitable. However, if interpretability is not crucial, a non-parametric model may be more suitable.
+
+
+L1 and L2 Regularization
+Regularization is a technique used to prevent overfitting in machine learning models by adding a penalty term to the loss function. The two most common types of regularization are L1 and L2 regularization.
+L1 Regularization (Lasso Regression)
+L1 regularization adds a term to the loss function that is proportional to the absolute value of the model's weights. This term is also known as the "L1 norm" or "Lasso regression".
+The L1 regularization term can be written as:
+L1 = α * ||w||1
+where α is the regularization strength, w is the model's weight vector, and ||.||1 denotes the L1 norm.
+L1 regularization has the effect of setting some of the model's weights to zero, which can help to reduce overfitting by reducing the number of features used by the model.
+L2 Regularization (Ridge Regression)
+L2 regularization adds a term to the loss function that is proportional to the square of the model's weights. This term is also known as the "L2 norm" or "Ridge regression".
+The L2 regularization term can be written as:
+L2 = α * ||w||2^2
+where α is the regularization strength, w is the model's weight vector, and ||.||2 denotes the L2 norm.
+L2 regularization has the effect of shrinking the model's weights towards zero, but not setting them exactly to zero. This can help to reduce overfitting by reducing the magnitude of the model's weights.
+Key differences between L1 and L2 Regularization
+Here are the key differences between L1 and L2 regularization:
+Sparsity: L1 regularization tends to produce sparse models, where some of the weights are set to zero. L2 regularization does not produce sparse models.
+Magnitude: L1 regularization reduces the magnitude of the model's weights by setting some of them to zero. L2 regularization reduces the magnitude of the model's weights by shrinking them towards zero.
+Computational complexity: L1 regularization can be computationally expensive due to the need to compute the L1 norm. L2 regularization is typically faster to compute.
+Choosing between L1 and L2 Regularization
+When choosing between L1 and L2 regularization, consider the following factors:
+Feature selection: If you want to perform feature selection, L1 regularization may be a better choice.
+Model interpretability: If you want to interpret the model's weights, L1 regularization may be a better choice since it produces sparse models.
+Computational complexity: If computational complexity is a concern, L2 regularization may be a better choice.
+In general, L1 regularization is a good choice when you have a large number of features and want to perform feature selection. L2 regularization is a good choice when you have a small number of features and want to reduce overfitting without performing feature selection.
