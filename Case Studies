@@ -1,0 +1,37 @@
+Tag: unbiased ratings
+Question: 1000 youtube videos. 100 reviewers. each reviewer rate 100 video and gives each a score from 1-10. how do you find a way to get unbiased ratings
+
+Answer:
+To get unbiased ratings, we need to address the following challenges:
+Reviewer bias: Each reviewer may have a different rating style (e.g., some might be more generous or harsh than others).
+Video selection bias: Reviewers may not rate all 1000 videos, but rather a subset of 100 videos that might not be representative of the entire dataset.
+Here's a step-by-step approach to mitigate these biases and obtain unbiased ratings:
+Step 1: Data Collection
+Collect the ratings from each reviewer for their assigned 100 videos. Store the data in a matrix with dimensions 100 (reviewers) x 1000 (videos), where each cell contains the rating given by a reviewer to a video. Missing values will represent unrated videos.
+Step 2: Normalization
+To account for reviewer bias, normalize each reviewer's ratings by subtracting their mean rating and dividing by their standard deviation. This will help to:
+Center the ratings around zero, reducing the impact of individual reviewer biases.
+Scale the ratings to have similar variances, making them more comparable across reviewers.
+Python
+import numpy as np
+# Assume 'ratings' is the 100x1000 matrix of ratings
+normalized_ratings = (ratings - np.mean(ratings, axis=1, keepdims=True)) / np.std(ratings, axis=1, keepdims=True)
+Step 3: Imputation
+To address video selection bias, impute missing ratings using a suitable method, such as:
+Mean imputation: Replace missing values with the average rating of the corresponding video across all reviewers who rated it.
+Matrix factorization: Use techniques like Singular Value Decomposition (SVD) or Non-negative Matrix Factorization (NMF) to estimate missing ratings based on patterns in the existing data.
+Python
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(strategy='mean')
+imputed_ratings = imputer.fit_transform(normalized_ratings)
+Step 4: Aggregation
+Calculate the overall rating for each video by aggregating the imputed ratings across all reviewers. You can use methods like:
+Average rating: Calculate the mean rating for each video.
+Weighted average rating: Assign weights to each reviewer based on their reliability or expertise, and calculate the weighted average rating for each video.
+Python
+overall_ratings = np.mean(imputed_ratings, axis=0)
+Step 5: Ranking
+Rank the videos based on their overall ratings. You can use various ranking algorithms, such as:
+Simple ranking: Rank videos based on their overall ratings in descending order.
+Bayesian ranking: Use Bayesian methods to model the uncertainty in the ratings and rank videos accordingly.
+By following these steps, you can obtain unbiased ratings that account for reviewer bias and video selection bias, providing a more accurate representation of the videos' quality.
