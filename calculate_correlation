@@ -1,0 +1,44 @@
+def calculate_correlation(x1, x2):
+    """
+    Calculate the correlation coefficient (r) and p-value between two arrays.
+    Parameters:
+    x1 (array): The first array.
+    x2 (array): The second array.
+    Returns:
+    None
+    """
+    # Check if the input arrays have the same length
+    if len(x1) != len(x2):
+        raise ValueError("Input arrays must have the same length")
+    # Calculate the mean of x1 and x2
+    mean_x1 = np.mean(x1)
+    mean_x2 = np.mean(x2)
+    print(f"Mean of X1: {mean_x1}")
+    print(f"Mean of X2: {mean_x2}")
+    # Calculate the deviations from the mean for x1 and x2
+    dev_x1 = x1 - mean_x1
+    dev_x2 = x2 - mean_x2
+    # Calculate the variance of x1 and x2
+    var_x1 = np.var(x1, ddof=1)  # Use ddof=1 for sample variance (n-1)
+    var_x2 = np.var(x2, ddof=1)
+    print(f"Variance of X1: {var_x1}")
+    print(f"Variance of X2: {var_x2}")
+    # Calculate the covariance between x1 and x2
+    cov_x1_x2 = np.cov(x1, x2, ddof=1)[0, 1]  # Use ddof=1 for sample covariance (n-1)
+    print(f"Covariance between X1 and X2: {cov_x1_x2}")
+    # Calculate the correlation coefficient (r)
+    r = cov_x1_x2 / np.sqrt(var_x1 * var_x2)
+    print(f"Correlation coefficient (r): {r}")
+    # Calculate the t-statistic
+    t_stat = r * np.sqrt((len(x1) - 2) / (1 - r**2))
+    print(f"t-statistic: {t_stat}")
+    # Calculate the degrees of freedom (df)
+    df = len(x1) - 2
+    print(f"Degrees of freedom (df): {df}")
+    # Calculate the p-value
+    p_value = 2 * (1 - stats.t.cdf(np.abs(t_stat), df))
+    print(f"p-value: {p_value}")
+# Example usage:
+x1 = np.array([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40])
+x2 = np.array([3.4, 5.6, 7.8, 10.2, 12.6, 15.1, 17.6, 20.2, 22.8, 25.4, 28.1, 30.8, 33.5, 36.2, 39.1, 42.0, 45.0, 48.1, 51.3, 54.6])
+calculate_correlation(x1, x2)
