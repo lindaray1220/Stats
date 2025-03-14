@@ -1,0 +1,26 @@
+import numpy as np
+from scipy.stats import norm
+# Set the true mean and standard deviation
+true_mean = 1
+true_std = 1
+# Set the sample size
+n = 100
+# Generate a sample from the population
+sample = np.random.normal(true_mean, true_std, n)
+# Calculate the sample mean and standard deviation
+sample_mean = np.mean(sample)
+sample_std = np.std(sample)
+# Set the significance level (alpha)
+alpha = 0.05
+# Calculate the z-score
+z_score = (sample_mean - 0) / (sample_std / np.sqrt(n))
+# Calculate the p-value
+p_value = 2 * (1 - np.abs(stats.norm.cdf(z_score)))
+# Check if the p-value is less than alpha
+if p_value < alpha:
+    print("Reject the null hypothesis")
+else:
+    print("Fail to reject the null hypothesis")
+# Type II Error (False Negative)
+if true_mean > 0 and p_value >= alpha:
+    print("Type II Error (False Negative)")
