@@ -1,0 +1,125 @@
+#Bootstrapping
+import numpy as np
+# Define the original dataset
+data = np.array([1, 2, 3, 4, 5])
+# Define the number of bootstrap samples
+n_bootstraps = 1000
+# Initialize an array to store the bootstrap medians
+bootstrap_medians = np.zeros(n_bootstraps)
+# Perform bootstrapping
+for i in range(n_bootstraps):
+    # Resample with replacement from the original dataset
+    bootstrap_sample = np.random.choice(data, size=len(data), replace=True)
+    # Calculate the median of the bootstrap sample
+    bootstrap_median = np.median(bootstrap_sample)
+    # Store the bootstrap median
+    bootstrap_medians[i] = bootstrap_median
+# Calculate the mean and standard deviation of the bootstrap medians
+mean_bootstrap_median = np.mean(bootstrap_medians)
+std_bootstrap_median = np.std(bootstrap_medians)
+print(bootstrap_medians)
+print("Mean Bootstrap Median:", mean_bootstrap_median)
+print("Standard Deviation of Bootstrap Medians:", std_bootstrap_median)
+
+import numpy as np
+def bootstrap_sample(data, num_samples):
+    """
+    Generate a bootstrap sample from the given data.
+    Parameters:
+        data (array-like): The original data.
+        num_samples (int): The number of samples to generate.
+    Returns:
+        array-like: A bootstrap sample of size num_samples.
+    """
+    # Create an array to store the bootstrap sample
+    bootstrap_data = np.empty((num_samples, len(data)))
+    # Loop through each sample
+    for i in range(num_samples):
+        # Generate a random index array with replacement
+        indices = np.random.randint(0, len(data), size=len(data))
+        # Use the index array to select the bootstrap sample
+        bootstrap_data[i] = data[indices]
+    return bootstrap_data
+# Example usage:
+data = np.array([1, 2, 3, 4, 5])
+num_samples = 1000
+bootstrap_data = bootstrap_sample(data, num_samples)
+print(bootstrap_data.shape)  # Output: (1000, 5)
+###############################################################################################
+
+
+#CDF & PDF
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+# Define the distribution parameters
+mu = 10
+sigma = 2
+# Create a normal distribution object
+dist = norm(loc=mu, scale=sigma)
+# Get the PDF (probability density function)
+x = np.linspace(mu - 3*sigma, mu + 3*sigma, 100)
+pdf = dist.pdf(x)
+# Get the CDF (cumulative distribution function)
+cdf = dist.cdf(x)
+# Get the expectation value (mean)
+expectation = dist.mean()
+# Get the variance
+variance = dist.var()
+# Print the results
+# print("distribution:", dist)
+print(x)
+print("PDF:", pdf)
+print("CDF:", cdf)
+print("Expectation:", expectation)
+print("Variance:", variance)
+# Plot the PDF and CDF
+plt.plot(x, pdf, label="PDF")
+plt.plot(x, cdf, label="CDF")
+plt.legend()
+plt.show()
+###############################################################################################
+
+
+
+#Normal Distribution
+import numpy as np
+from scipy.stats import shapiro
+# Generate a random sample from a normal distribution
+np.random.seed(0)
+data = np.random.normal(0, 1, 100)
+# Perform Shapiro-Wilk test
+stat, p = shapiro(data)
+print("Test Statistic:", stat)
+print("p-value:", p)
+if p < 0.05:
+    print("Reject H0: Data is not normally distributed")
+else:
+    print("Fail to reject H0: Data is normally distributed")
+###############################################################################################
+
+
+
+#Binomial Distribution
+import numpy as np
+import matplotlib.pyplot as plt
+# Set the seed for reproducibility
+np.random.seed(0)
+# Define the parameters for the binomial distribution
+n = 10  # number of trials
+p = 0.5  # probability of success
+num_samples = 1000
+# Generate a group of binomial distributed vectors
+data = np.random.binomial(n, p, num_samples)
+# Draw the histogram
+plt.hist(data, bins=range(n+2), align='left', rwidth=0.8)
+# Set the title and labels
+plt.title('Histogram of Binomial Distributed Data')
+plt.xlabel('Number of Successes')
+plt.ylabel('Frequency')
+# Show the plot
+plt.show()
+###############################################################################################
+
+
+
