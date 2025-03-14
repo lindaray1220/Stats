@@ -10,3 +10,40 @@ class obj():
     print('Head count: ' + str(head_n))
 
 obj.coinFlip(0.5, 10)
+
+import numpy as np
+from scipy.stats import binom
+# Define the parameters
+n = 10
+x = 2
+p = 0.5
+# Calculate the p-value
+p_value = stats.binom_test(x,n,p, alternative='two-sided')
+print("p-value:", p_value)
+
+import numpy as np
+# Define the parameters
+n = 1000
+k = 1000
+p = 0.5
+# Calculate the z-score
+z_score = (k - n*p) / np.sqrt(n*p*(1-p))
+print("z-score:", z_score)
+z_p_value = 2*(1-stats.norm.cdf(abs(z_score)))
+print(f"Z-Test: Z-score = {z_score:.4f}, p-value = {z_p_value: .4f}")
+
+import scipy.stats as stats
+from scipy.stats import chi2
+# Define the parameters
+n = 1000
+x = 1000
+p = 0.5
+# Create the contingency table
+observed = np.array([k, n-k])
+expected = np.array([n*p, n*(1-p)])
+# Calculate the chi-squared statistic
+chi_squared = np.sum((observed - expected)**2 / expected)
+print("chi-squared statistic:", chi_squared)
+df = len(observed) - 1
+p_value = 1 - chi2.cdf(chi_squared, df)
+print("p-value:", p_value)
